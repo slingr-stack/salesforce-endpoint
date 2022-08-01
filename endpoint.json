@@ -1,0 +1,117 @@
+{
+    "label": "Salesforce",
+    "name": "salesforce",
+    "apiVersion": "v1",
+    "internal": false,
+    "configurationType": "GLOBAL",
+    "deployment": {
+        "jsEndpoint": true,
+        "profiles": [
+            {
+                "name": "small",
+                "label": "Small",
+                "memory": 128,
+                "description": "Small Memory Allocation"
+            },
+            {
+                "name": "default",
+                "label": "Default",
+                "memory": 256,
+                "description": "Default Memory Allocation"
+            },
+            {
+                "name": "medium",
+                "label": "Medium",
+                "memory": 512,
+                "description": "Medium Memory Allocation"
+            },
+            {
+                "name": "big",
+                "label": "Big",
+                "memory": 256,
+                "description": "Big Memory Allocation"
+            }
+        ],
+        "allowMultipleInstances": false
+    },
+    "status": "ACTIVE",
+    "stores": [],
+    "events": [
+        {
+            "label": "Inbound Event",
+            "name": "inboundEvent",
+            "description": "Event send for the endpoint each time that a POST request to the root path of the web service."
+        },
+        {
+            "label": "On Download Complete",
+            "name": "onDownloadComplete",
+            "description": "Callback event for when upload of a file has finished"
+        },
+        {
+            "label": "On Upload Finished",
+            "name": "onUploadComplete",
+            "description": "Callback event for when upload of a file has finished"
+        },
+        {
+            "label": "Pong",
+            "name": "pong",
+            "description": "Callback event for ping function"
+        }
+    ],
+    "functions": [
+        {
+            "label": "GET",
+            "name": "_get"
+        },
+        {
+            "label": "POST",
+            "name": "_post"
+        },
+        {
+            "label": "PATCH",
+            "name": "_patch"
+        },
+        {
+            "label": "PUT",
+            "name": "_put"
+        },
+        {
+            "label": "DELETE",
+            "name": "_delete"
+        }
+    ],
+    "scripts":[
+        "salesforce-helpers.js",
+        "http-generic-helpers.js"
+    ],
+    "configuration": [
+        {
+            "name": "clientId",
+            "label": "Client ID",
+            "description": "Customer Client ID Value",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "clientSecret",
+            "label": "Client Secret",
+            "description": "Customer Client Secret Value",
+            "type": "password",
+            "required": true
+        },
+        {
+            "name": "userName",
+            "label": "User Name",
+            "description": "Customer User Name Value",
+            "type": "text",
+            "required": true
+        },
+        {
+            "name": "password",
+            "label": "Password",
+            "description": "Customer Password Value",
+            "type": "password",
+            "required": true
+        }
+    ]
+}

@@ -1,0 +1,895 @@
+{
+	"fileName": "salesforce-helpers",
+	"endpointName": "salesforce",
+	"apiDescriptors": [
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_versions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_discoveryresource.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/limits",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_limits.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_describeGlobal.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info_post.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/describe",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/deleted",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getdeleted.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/updated",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/describe/namedLayouts/:layoutName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_named_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_get_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "patch",
+			"method": "PATCH", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_get_patch.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_get_delete.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObjectName/:fieldName/:fieldValue",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_upsert_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/sobjects/:sObjectName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_upsert_post.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "patch",
+			"method": "PATCH", 
+			"url": "/services/data/:apiVersion/sobjects/:sObjectName/:fieldName/:fieldValue",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_upsert_patch.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE", 
+			"url": "/services/data/:apiVersion/sobjects/:sObjectName/:fieldName/:fieldValue",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_upsert_delete.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "head",
+			"method": "HEAD", 
+			"url": "/services/data/:apiVersion/sobjects/:sObjectName/:fieldName/:fieldValue",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_upsert_head.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id/:blobField",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_blob_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/describe/approvalLayouts",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_approvallayouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/describe/approvalLayouts/:approvalProcessName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_approvallayouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/describe/compactLayouts",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_compactlayouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/Global/describe/layouts",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/Object/describe/layouts/:id",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/PlatformAction",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_platformaction.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions/:actionName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions/:actionName/describe",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions/:actionName/defaultValues",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions/:actionName/defaultValues/:id",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/sobjects/:sObject/quickActions/:actionName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id/richTextImageFields/:fieldName/:contentReferenceId",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_rich_text_image_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id/:relationshipFieldName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_relationships.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id/:relationshipFieldName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_relationships.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "update",
+			"method": "PATCH", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/:id/:relationshipFieldName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_relationships.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sObject/suggestedArticles​",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_suggest_articles.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/User/:userId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/SelfServiceUser/:selfServiceUserId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/sobjects/User/:userId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/sobjects/SelfServiceUser/:selfServiceUserId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE", 
+			"url": "/services/data/:apiVersion/sobjects/User/:userId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE", 
+			"url": "/services/data/:apiVersion/sobjects/SelfServiceUser/:selfServiceUserId/password",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:eventName/eventSchema",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_eventschema.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/event/eventSchema/:schemaId",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_event_eventschema.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/appMenu/AppSwitcher",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_appmenu.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/appMenu/Salesforce1",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_appmenu.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/compactLayouts",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_compact_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/compactLayouts",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_compact_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/consent/action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_consent.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/consent/multiaction",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_consent.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/consent/action/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_consent_cdp_params.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "PATCH",
+			"method": "PATCH", 
+			"url": "/services/data/:apiVersion/consent/action/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_consent_cdp_params.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "PATCH",
+			"method": "PATCH", 
+			"url": "/services/data/:apiVersion/consent/action/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_consent_write.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/support/embeddedservice/configuration/:embeddedServiceConfigDeveloperName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_embeddedserviceconfigdescribe.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/actions",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/actions/:actions",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/actions/standard",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/actions/standard/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/actions/standard",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/actions/standard/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/actions/custom",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/actions/custom/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/actions/custom",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST", 
+			"url": "/services/data/:apiVersion/actions/custom/:action",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable_standard.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews/:queryLocator/describe",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviewdescribe.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews/:listViewID/results",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviewresults.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews/:listViewID/results",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviewresults.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviews.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews/:listViewID",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviews.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/support",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_support.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/support/dataCategoryGroups",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_support_dcgroups.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/support/dataCategoryGroups/:group/dataCategories/:category",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_support_dcdetail.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET", 
+			"url": "/services/data/:apiVersion/support/knowledgeArticles",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_support_artlist.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/support/knowledgeArticles/:article",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_support_artdetails.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/parameterizedSearch",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_parameterized.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/parameterizedSearch",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_parameterized.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/consent/dsr/rtp/execute",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_portability.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/consent/dsr/rtp/execute",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_portability.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/process/approvals",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_approvals.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/process/approvals",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_approvals.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/process/rules",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_rules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/process/rules/sObjectName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_rules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/process/rules/sObjectName/workflowRuleId",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_rules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/process/rules",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_process_rules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/OpportunityLineItem/:opportunityLineItemId/OpportunityLineItemSchedules",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_opportunitylineitemschedules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "put",
+			"method": "PUT",
+			"url": "/services/data/:apiVersion/sobjects/OpportunityLineItem/:opportunityLineItemId/OpportunityLineItemSchedules",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_opportunitylineitemschedules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE",
+			"url": "/services/data/:apiVersion/sobjects/OpportunityLineItem/:opportunityLineItemId/OpportunityLineItemSchedules",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_opportunitylineitemschedules.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/query/:query",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_query.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/queryAll/:query",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_queryall.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/quickActions",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/quickActions/:quickAction",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_quickactions.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/:sobjectType/listviews/recent",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_recentlistviews.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/recent",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_recent_items.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/limits/recordCount",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_record_count.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/relevantItems",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_relevant_items.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/knowledgeManagement/settings",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_knowledge_get_language.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search/scopeOrder",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_scope_order.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search/layout",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_layouts.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningToggleMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_togglemetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningUsageByAppTypeMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_usagebyapptypemetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningUsageByBrowserMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_usagebybrowsermetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningUsageByPageMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_usagebypagemetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningUsageByFlexiPageMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_usagebyflexipagemetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/sobjects/LightningExitByPageMetrics",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_lightning_exitbypagemetrics.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/scheduling",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/requests_ls_scheduling.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/scheduling/getAppointmentSlots",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/requests_ls_getappointmentslots.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/scheduling/getAppointmentCandidates",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/requests_ls_getappointmentcandidates.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search/suggestions",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_suggest_records.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search/suggestTitleMatches",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_suggest_title_matches.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/search/suggestSearchQueries",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_suggest_queries.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/localizedvalue/record/:developerName/:language",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_add_change.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/localizedvalue/records/upsert",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_add_change_multiple.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE",
+			"url": "/services/data/:apiVersion/localizedvalue/record/:developerName/:language",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_delete.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/localizedvalue/records/delete",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_delete_multiple.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/localizedvalue/record/:developerName/:language",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_view.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/localizedvalue/records/get",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/request_survey_translate_view_multiple.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/theme",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_themes.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/composite",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite_post.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/composite",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/composite/batch",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_batch.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/composite/tree/:sObjectName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobject_tree.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "post",
+			"method": "POST",
+			"url": "/services/data/:apiVersion/composite/sobjects",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections_create.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "get",
+			"method": "GET",
+			"url": "/services/data/:apiVersion/composite/sobjects/:sObjectName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections_get.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "patch",
+			"method": "PATCH",
+			"url": "/services/data/:apiVersion/composite/sobjects",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections_update.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "patch",
+			"method": "PATCH",
+			"url": "/services/data/:apiVersion/composite/sobjects/:sObjectName/:externalIdFieldName",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections_upsert.htm"]
+		},
+		{
+			"prefix": "", 
+			"suffix": "delete",
+			"method": "DELETE",
+			"url": "/services/data/:apiVersion/composite/sobjects",
+			"docsLinks": ["https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_sobjects_collections_delete.htm"]
+		}
+	]
+}
