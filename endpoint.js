@@ -15,6 +15,7 @@ endpoint.hooks.onEndpointStart = async () => {
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
+    endpoint.appLogger.info('INSTANCE URL: ' + INSTANCE_URL);
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
@@ -45,8 +46,7 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Access token received successfully');
         accessToken = response.data.access_token;
     } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token', error.response);
-        endpoint.appLogger.error('There were problems receiving the access token' + error);
+        endpoint.appLogger.error('There were problems receiving the access token: ', error);
     }
 }
 
@@ -83,8 +83,8 @@ endpoint.functions._post = async (options) => {
             await generateAccessToken();
             return await endpoint.functions._post(options);
         }
-        endpoint.appLogger.error('There were problems executing the POST request', error.response);
-        throw 'There were problems executing the POST request', error.response;
+        endpoint.appLogger.error('There were problems executing the POST request: ', error.response);
+        throw 'There were problems executing the POST request: ', error.response;
     }
 }
 
