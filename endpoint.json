@@ -86,6 +86,13 @@
     ],
     "configuration": [
         {
+            "name": "instanceUrl",
+            "label": "Instance URL",
+            "description": "Salesforce Instance URL Value",
+            "type": "text",
+            "required": true
+        },
+        {
             "name": "clientId",
             "label": "Client ID",
             "description": "Customer Client ID Value",
