@@ -37,7 +37,7 @@ async function generateAccessToken() {
     formData.append("client_secret", endpoint.endpointConfig.clientSecret);
     formData.append("username", endpoint.endpointConfig.userName);
     formData.append("password", endpoint.endpointConfig.password);
-    endpoint.appLogger.info('FORMDATA: ' + formData);
+    endpoint.appLogger.info('FORMDATA: ', formData);
     try {
         let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
             {
