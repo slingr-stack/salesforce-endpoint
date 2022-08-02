@@ -37,7 +37,7 @@ async function generateAccessToken() {
     formData.append("client_secret", endpoint.endpointConfig.clientSecret);
     formData.append("username", endpoint.endpointConfig.userName);
     formData.append("password", endpoint.endpointConfig.password);
-
+    endpoint.appLogger.info('FORMDATA: ' + formData);
     try {
         let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
             {
@@ -47,6 +47,7 @@ async function generateAccessToken() {
         accessToken = response.data.access_token;
     } catch (error) {
         endpoint.appLogger.error('There were problems receiving the access token', error.response);
+        endpoint.appLogger.error('There were problems receiving the access token' + error);
     }
 }
 
@@ -60,6 +61,7 @@ endpoint.functions._get = async (options) => {
         endpoint.appLogger.info('GET request executed successfully');
         return data;
     } catch (error) {
+        endpoint.appLogger.info('GET ERROR: ' + error);
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             await generateAccessToken();
