@@ -136,7 +136,7 @@
                 "authUrl": "config.instanceUrl + '/services/oauth2/authorize'",
                 "scope": "'full'",
                 "grantType": "'authorization_code'",
-                "code": "@config.accessToken",
+                "accessToken": "@config.accessToken",
                 "refreshToken": "@config.refreshToken"
             }
         },
