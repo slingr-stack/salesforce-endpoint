@@ -134,6 +134,7 @@
                 "clientId": "config.clientId",
                 "clientSecret": "config.clientSecret",
                 "authUrl": "config.instanceUrl + '/services/oauth2/authorize'",
+                "redirectUri": "config.redirectUri",
                 "scope": "'full'",
                 "grantType": "'authorization_code'",
                 "accessToken": "@config.accessToken",
