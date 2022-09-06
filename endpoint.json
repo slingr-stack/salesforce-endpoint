@@ -135,7 +135,7 @@
                 "clientSecret": "config.clientSecret",
                 "authUrl": "config.instanceUrl + '/services/oauth2/authorize'",
                 "accessTokenUrl": "config.instanceUrl + '/oauth2/token'",
-                "scope": "'read+write'",
+                "scope": "'full'",
                 "grantType": "'authorization_code'",
                 "accessToken": "@config.accessToken",
                 "refreshToken": "@config.refreshToken"
