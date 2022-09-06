@@ -134,10 +134,9 @@
                 "clientId": "config.clientId",
                 "clientSecret": "config.clientSecret",
                 "authUrl": "config.instanceUrl + '/services/oauth2/authorize'",
-                "accessTokenUrl": "config.instanceUrl + '/oauth2/token'",
                 "scope": "'full'",
                 "grantType": "'authorization_code'",
-                "accessToken": "@config.accessToken",
+                "code": "@config.accessToken",
                 "refreshToken": "@config.refreshToken"
             }
         },
@@ -162,6 +161,12 @@
         {
             "name": "refreshToken",
             "label": "Refresh token",
+            "type": "text",
+            "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
+        },
+        {
+            "name": "redirectUri",
+            "label": "Redirect Uri",
             "type": "text",
             "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
         },
