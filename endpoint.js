@@ -1,51 +1,48 @@
-
-//////////////////////////////////////////////
-//            Endpoints Framework           //
-//////////////////////////////////////////////
+// Endpoint framework and dependencies
 const endpoint = require('slingr-endpoints'),
     axios = require('axios'),
     FormData = require('form-data');
 
-//////////////////////////////////////////////
-//              Endpoint Hooks              //
-//////////////////////////////////////////////
+// Endpoint hooks
 let INSTANCE_URL;
 endpoint.hooks.onEndpointStart = async () => {
-    // the loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used.
+    // The loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used.
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
-    //The endpoint is about to stop at this point. Use this to release all resources that could cause a memory leak. 
+    // The endpoint is about to stop at this point. Use this to release all resources that could cause a memory leak. 
     endpoint.logger.info('From Hook - Endpoint is stopping.');
     endpoint.appLogger.info('From Hook - Endpoint is stopping.', cause);
 };
 
-//////////////////////////////////////////////
-//            Endpoint Functions            //
-//////////////////////////////////////////////
-
-//Generate access token
+// Endpoint functions    
+// Generate access token
 let accessToken;
 async function generateAccessToken() {
-    endpoint.appLogger.info('Getting access token');
-    const formData = new FormData();
-    formData.append("grant_type", 'password');
-    formData.append("client_id", endpoint.endpointConfig.clientId);
-    formData.append("client_secret", endpoint.endpointConfig.clientSecret);
-    formData.append("username", endpoint.endpointConfig.userName);
-    formData.append("password", endpoint.endpointConfig.password);
-    try {
-        let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
-            {
-                headers: formData.getHeaders()
-            });
-        endpoint.appLogger.info('Access token received successfully');
-        accessToken = response.data.access_token;
-    } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token: ', error);
+    if (endpoint.endpointConfig.accessToken) {
+        accessToken = endpoint.endpointConfig.accessToken;
+    }
+    if (!endpoint.endpointConfig.accessToken && endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
+        endpoint.appLogger.info('Getting access token');
+        const formData = new FormData();
+        formData.append("grant_type", 'password');
+        formData.append("client_id", endpoint.endpointConfig.clientId);
+        formData.append("client_secret", endpoint.endpointConfig.clientSecret);
+        formData.append("username", endpoint.endpointConfig.userName);
+        formData.append("password", endpoint.endpointConfig.password);
+        try {
+            let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
+                {
+                    headers: formData.getHeaders()
+                });
+            endpoint.appLogger.info('Access token received successfully');
+            accessToken = response.data.access_token;
+        } catch (error) {
+            endpoint.appLogger.error('There were problems receiving the access token: ', error);
+        }
     }
 }
 
@@ -141,9 +138,7 @@ endpoint.functions._patch = async (options) => {
     }
 }
 
-//////////////////////////////////////////////
-//          Endpoint Web Services           //
-//////////////////////////////////////////////
+// Web services
 endpoint.webServices.webhooks = {
     method: 'POST',
     path: '/',
@@ -163,5 +158,5 @@ endpoint.webServices.webhooks = {
     }
 }
 
-//Always call this method at the end of the file to run the endpoint
+// Always call this method at the end of the file to run the endpoint
 endpoint.start();
