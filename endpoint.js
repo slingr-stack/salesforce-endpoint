@@ -22,17 +22,18 @@ endpoint.hooks.onEndpointStop = (cause) => {
 // Generate access token
 let accessToken;
 async function generateAccessToken() {
-    if (endpoint.endpointConfig.accessToken) {
-        accessToken = endpoint.endpointConfig.accessToken;
-    }
-    if (!endpoint.endpointConfig.accessToken && endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         endpoint.appLogger.info('Getting access token');
         const formData = new FormData();
         formData.append("grant_type", 'password');
         formData.append("client_id", endpoint.endpointConfig.consumerKey);
         formData.append("client_secret", endpoint.endpointConfig.consumerSecret);
+    if (!endpoint.endpointConfig.code && endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         formData.append("username", endpoint.endpointConfig.userName);
         formData.append("password", endpoint.endpointConfig.password);
+    } else if (endpoint.endpointConfig.code && endpoint.endpointConfig.authorizationMethod === 'webServer') {
+        formData.append("code", endpoint.endpointConfig.code);
+        formData.append("redirectUri", endpoint.endpointConfig.redirectUri);
+    }
         try {
             let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
                 {
@@ -43,7 +44,6 @@ async function generateAccessToken() {
         } catch (error) {
             endpoint.appLogger.error('There were problems receiving the access token: ', error);
         }
-    }
 }
 
 // HTTP methods
