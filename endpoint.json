@@ -8,28 +8,10 @@
         "jsEndpoint": true,
         "profiles": [
             {
-                "name": "small",
-                "label": "Small",
-                "memory": 128,
-                "description": "Small Memory Allocation"
-            },
-            {
                 "name": "default",
                 "label": "Default",
                 "memory": 256,
                 "description": "Default Memory Allocation"
-            },
-            {
-                "name": "medium",
-                "label": "Medium",
-                "memory": 512,
-                "description": "Medium Memory Allocation"
-            },
-            {
-                "name": "big",
-                "label": "Big",
-                "memory": 256,
-                "description": "Big Memory Allocation"
             }
         ],
         "allowMultipleInstances": false
@@ -51,11 +33,6 @@
             "label": "On Upload Finished",
             "name": "onUploadComplete",
             "description": "Callback event for when upload of a file has finished"
-        },
-        {
-            "label": "Pong",
-            "name": "pong",
-            "description": "Callback event for ping function"
         }
     ],
     "functions": [
@@ -93,30 +70,23 @@
             "required": true
         },
         {
-            "name": "clientId",
-            "label": "Client ID",
-            "description": "Customer Client ID Value",
+            "name": "consumerKey",
+            "label": "Consumer Key",
+            "description": "Customer Consumer Key Value",
             "type": "text",
-            "required": true
-        },
-        {
-            "name": "clientSecret",
-            "label": "Client Secret",
-            "description": "Customer Client Secret Value",
-            "type": "password",
             "required": true
         },
         {
             "name": "authorizationMethod",
             "label": "Authorization Method",
-            "defaultValue": "salesforceAuthorization",
+            "defaultValue": "webServer",
             "type": "buttonsGroup",
             "typeOptions": {
                 "allowCustom": false,
                 "possibleValues": [
                     {
-                        "label": "Salesforce Authorization",
-                        "name": "salesforceAuthorization"
+                        "label": "Connect To Salesforce",
+                        "name": "webServer"
                     },
                     {
                         "label": "Username - Password",
@@ -126,56 +96,42 @@
             }
         },
         {
-            "name": "salesforceAuthorizationRequest",
-            "label": "Salesforce Authorization",
-            "type": "oauth2",
-            "visibility": "config.authorizationMethod == 'salesforceAuthorization'",
-            "typeOptions": {
-                "clientId": "config.clientId",
-                "clientSecret": "config.clientSecret",
-                "authUrl": "config.instanceUrl + '/services/oauth2/authorize'",
-                "accessTokenUrl": "config.instanceUrl + '/services/oauth2/token'",
-                "redirectUri": "config.redirectUri",
-                "scope": "'full'",
-                "grantType": "'authorization_code'",
-                "accessToken": "@config.accessToken",
-                "refreshToken": "@config.refreshToken"
-            }
-        },
-        
-        {
-            "name": "connectButton",
-            "label": "Connect to Salesforce",
+            "name": "webServerButton",
+            "label": "Connect To Salesforce",
             "type": "button",
             "typeOptions": {
                 "color": "primary",
                 "icon": "zmdi-play",
-                "action": "var url = config.instanceUrl + '/services/oauth2/authorize?client_id=' + config.clientId + '&redirect_uri=' + config.redirectUri + '&response_type=code';\nvar win = window.open(url, 'Authorization page', 'toolbar=no,scrollbars=no,location=no,statusbar=no,menubar=no,resizable=0,width=500,height=600,left=' + ((screen.width / 2) - 250) + ',top=' + ((screen.height / 2) - 250) + ','); \nvar self = this; \nvar intervalFn = function () { \n    try { \n        if (!win || !win.location) { \n            window.clearInterval(pollTimer); \n        } else { \n            if (win.location.href.includes('/callback')) { \n                win.innerWidth = 100; \n                win.innerHeight = 100; \n                win.screenX = screen.width; \n                win.screenY = screen.height; \n                window.clearInterval(pollTimer); \n                url = win.location.href; \n                const urlParams = new URLSearchParams(url);\n                var code; \n                if (urlParams.has('code')) { \n                    code = urlParams.get('code'); \n                    config.accessToken = code; \n                } \n            }\n            try { \n                win.close(); } catch (e) { } } \n        } catch (e) { } \n    }; \n            var pollTimer = window.setInterval(function () { intervalFn.apply(self) }, 500);"
+                "action": "var url = config.instanceUrl + '/services/oauth2/authorize?client_id=' + config.consumerKey + '&redirect_uri=' + config.redirectUri + '&response_type=code';\nvar win = window.open(url, 'Authorization page', 'toolbar=no,scrollbars=no,location=no,statusbar=no,menubar=no,resizable=0,width=500,height=600,left=' + ((screen.width / 2) - 250) + ',top=' + ((screen.height / 2) - 250) + ',');\nvar self = this;\nvar intervalFn = function () {\n    try {\n        if (!win || !win.location) {\n            window.clearInterval(pollTimer);\n        } else {\n            if (win.location.href.startsWith(config.redirectUri)) {\n                win.innerWidth = 100;\n                win.innerHeight = 100;\n                win.screenX = screen.width;\n                win.screenY = screen.height;\n                window.clearInterval(pollTimer);\n                const urlParams = new URLSearchParams(win.location.search);\n                var code;\n                if (urlParams.has('code')) {\n                    code = urlParams.get('code');\n                    config.accessToken = code; \n                }\n            }\n            try {\n                 win.close(); \n            } catch (e) { }\n        }\n    } catch (e) {\n    }\n};\nvar pollTimer = window.setInterval(function () { intervalFn.apply(self) }, 500);"
             },
-            "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
+            "visibility": "config.authorizationMethod == 'webServer'"
+        },
+        {
+            "name": "redirectUri",
+            "label": "Redirect URI",
+            "description": "Redirect URI to register on your application",
+            "type": "label",
+            "value": "config.SERVER_URL+ '/callback'",
+            "visibility": "config.authorizationMethod == 'webServer'"
         },
         {
             "name": "accessToken",
             "label": "Access token",
-            "type": "text",
-            "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
+            "type": "label",
+            "visibility": "config.authorizationMethod == 'webServer'"
         },
         {
-            "name": "refreshToken",
-            "label": "Refresh token",
-            "type": "text",
-            "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
-        },
-        {
-            "name": "redirectUri",
-            "label": "Redirect Uri",
-            "type": "text",
-            "visibility": "config.authorizationMethod == 'salesforceAuthorization'"
+            "name": "consumerSecret",
+            "label": "Consumer Secret",
+            "description": "Customer Consumer Secret Value",
+            "type": "password",
+            "required": "config.authorizationMethod == 'usernamePassword'",
+            "visibility": "config.authorizationMethod == 'usernamePassword'"
         },
         {
             "name": "userName",
-            "label": "User Name",
-            "description": "Customer User Name Value",
+            "label": "Username",
+            "description": "Customer Username Value",
             "type": "text",
             "required": "config.authorizationMethod == 'usernamePassword'",
             "visibility": "config.authorizationMethod == 'usernamePassword'"
