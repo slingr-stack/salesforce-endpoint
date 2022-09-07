@@ -29,8 +29,8 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Getting access token');
         const formData = new FormData();
         formData.append("grant_type", 'password');
-        formData.append("client_id", endpoint.endpointConfig.clientId);
-        formData.append("client_secret", endpoint.endpointConfig.clientSecret);
+        formData.append("client_id", endpoint.endpointConfig.consumerKey);
+        formData.append("client_secret", endpoint.endpointConfig.consumerSecret);
         formData.append("username", endpoint.endpointConfig.userName);
         formData.append("password", endpoint.endpointConfig.password);
         try {
