@@ -117,14 +117,17 @@
             "name": "redirectUri",
             "label": "Redirect URI",
             "description": "Redirect URI to register on your application",
-            "type": "label",
-            "value": "config.SERVER_URL+ '/callback'",
+            "type": "text",
+
             "visibility": "config.authorizationMethod == 'webServer'"
         },
         {
             "name": "code",
             "label": "Code",
-            "type": "label",
+            "type": "text",
+            "typeOptions": {
+                "representation": "textArea"
+            },
             "visibility": "config.authorizationMethod == 'webServer'"
         },
         {

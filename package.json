@@ -2,7 +2,7 @@
   "name": "salesforce",
   "version": "1.0.0",
   "description": "Salesforce endpoint to connect to Salesforce services",
-  "main": "index.js",
+  "main": "endpoint.js",
   "scripts": {
     "start": "node endpoint.js",
     "startDev": "nodemon endpoint.js",
@@ -14,12 +14,14 @@
   },
   "keywords": [
     "slingr",
-    "skeleton",
+    "salesforce",
     "endpoints"
   ],
   "dependencies": {
-    "nodemon": "^2.0.15",
-    "slingr-endpoints": "^1.4.4",
+    "slingr-endpoints": "^1.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19",
     "slingr-helpgen": "^0.3.6"
   }
 }
