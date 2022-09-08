@@ -1,6 +1,5 @@
 // Endpoint framework and dependencies
 const endpoint = require('slingr-endpoints'),
-    axios = require('axios'),
     FormData = require('form-data');
 
 // Endpoint hooks
@@ -10,7 +9,7 @@ endpoint.hooks.onEndpointStart = async () => {
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
-    await generateAccessToken();
+    //await generateAccessToken(); 
 };
 endpoint.hooks.onEndpointStop = (cause) => {
     // The endpoint is about to stop at this point. Use this to release all resources that could cause a memory leak. 
@@ -24,32 +23,34 @@ let accessToken;
 async function generateAccessToken() {
         endpoint.appLogger.info('Getting access token');
         const formData = new FormData();
-        formData.append("grant_type", 'password');
         formData.append("client_id", endpoint.endpointConfig.consumerKey);
         formData.append("client_secret", endpoint.endpointConfig.consumerSecret);
-    if (!endpoint.endpointConfig.code && endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
+    if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
+        formData.append("grant_type", 'password');
         formData.append("username", endpoint.endpointConfig.userName);
         formData.append("password", endpoint.endpointConfig.password);
-    } else if (endpoint.endpointConfig.code && endpoint.endpointConfig.authorizationMethod === 'webServer') {
+    } else if (endpoint.endpointConfig.authorizationMethod === 'webServer') {
+        formData.append("grant_type", 'authorization_code');
         formData.append("code", endpoint.endpointConfig.code);
-        formData.append("redirectUri", endpoint.endpointConfig.redirectUri);
+        formData.append("redirect_uri", endpoint.endpointConfig.redirectUri);
     }
         try {
-            let response = await axios.post(INSTANCE_URL + '/services/oauth2/token', formData,
+            let response = await endpoint.httpModule.post(INSTANCE_URL + '/services/oauth2/token', formData,
                 {
                     headers: formData.getHeaders()
                 });
             endpoint.appLogger.info('Access token received successfully');
             accessToken = response.data.access_token;
         } catch (error) {
-            endpoint.appLogger.error('There were problems receiving the access token: ', error);
+            console.log(error.response);
+            endpoint.appLogger.error('There were problems receiving the access token: ', error.response);
         }
 }
 
 // HTTP methods
 endpoint.functions._get = async (options) => {
     try {
-        let { data } = await axios.get(INSTANCE_URL + options.params.path, {
+        let { data } = await endpoint.httpModule.get(INSTANCE_URL + options.params.path, {
             headers: { 'Authorization': `Bearer ${accessToken}` },
             params: options.params.body
         });
@@ -68,7 +69,7 @@ endpoint.functions._get = async (options) => {
 
 endpoint.functions._post = async (options) => {
     try {
-        let { data } = await axios.post(INSTANCE_URL + options.params.path, options.params.body, {
+        let { data } = await endpoint.httpModule.post(INSTANCE_URL + options.params.path, options.params.body, {
             headers: { 'Authorization': `Bearer ${accessToken}` }
         });
         endpoint.appLogger.info('POST request executed successfully');
@@ -86,7 +87,7 @@ endpoint.functions._post = async (options) => {
 
 endpoint.functions._put = async (options) => {
     try {
-        let { data } = await axios.put(INSTANCE_URL + options.params.path, options.params.body, {
+        let { data } = await endpoint.httpModule.put(INSTANCE_URL + options.params.path, options.params.body, {
             headers: { 'Authorization': `Bearer ${accessToken}` }
         });
         endpoint.appLogger.info('PUT request executed successfully');
@@ -104,7 +105,7 @@ endpoint.functions._put = async (options) => {
 
 endpoint.functions._delete = async (options) => {
     try {
-        let { data } = await axios.delete(INSTANCE_URL + options.params.path, options.params.body, {
+        let { data } = await endpoint.httpModule.delete(INSTANCE_URL + options.params.path, options.params.body, {
             headers: { 'Authorization': `Bearer ${accessToken}` }
         });
         endpoint.appLogger.info('DELETE request executed successfully');
@@ -122,7 +123,7 @@ endpoint.functions._delete = async (options) => {
 
 endpoint.functions._patch = async (options) => {
     try {
-        let { data } = await axios.patch(INSTANCE_URL + options.params.path, options.params.body, {
+        let { data } = await endpoint.httpModule.patch(INSTANCE_URL + options.params.path, options.params.body, {
             headers: { 'Authorization': `Bearer ${accessToken}` }
         });
         endpoint.appLogger.info('PATCH request executed successfully');
