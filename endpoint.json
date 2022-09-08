@@ -17,7 +17,9 @@
         "allowMultipleInstances": false
     },
     "status": "ACTIVE",
-    "stores": [],
+    "stores": [{
+        "name": "authorizationCode"
+    }],
     "events": [
         {
             "label": "Inbound Event",

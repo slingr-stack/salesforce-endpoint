@@ -9,7 +9,7 @@ endpoint.hooks.onEndpointStart = async () => {
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
-    await generateAccessToken(); 
+    await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
     // The endpoint is about to stop at this point. Use this to release all resources that could cause a memory leak. 
@@ -19,35 +19,41 @@ endpoint.hooks.onEndpointStop = (cause) => {
 
 // Endpoint functions    
 // Generate access token
-let accessToken, refreshToken;
+let accessToken;
 async function generateAccessToken() {
     endpoint.appLogger.info('Getting access token');
     const formData = new FormData();
     formData.append("client_id", endpoint.endpointConfig.consumerKey);
     formData.append("client_secret", endpoint.endpointConfig.consumerSecret);
-    if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
+    if (endpoint.endpointConfig.authorizationMethod === 'webServer') {
+        let authorizationCode = await endpoint.dataStores.authorizationCode.findOne({ code: endpoint.endpointConfig.code });
+        // if the authorization code is found the refresh token is used to get the access token
+        if (authorizationCode) {
+            formData.append("grant_type", 'refresh_token');
+            formData.append("refresh_token", authorizationCode.refreshToken);
+        } else {
+            formData.append("grant_type", 'authorization_code');
+            formData.append("code", endpoint.endpointConfig.code);
+            formData.append("redirect_uri", endpoint.endpointConfig.redirectUri);
+        }
+    } else if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         formData.append("grant_type", 'password');
         formData.append("username", endpoint.endpointConfig.userName);
         formData.append("password", endpoint.endpointConfig.password);
-    } else if (endpoint.endpointConfig.authorizationMethod === 'webServer' && !refreshToken) {
-        formData.append("grant_type", 'authorization_code');
-        formData.append("code", endpoint.endpointConfig.code);
-        formData.append("redirect_uri", endpoint.endpointConfig.redirectUri);
-    } else if (refreshToken) {
-        formData.append("grant_type", 'refresh_token');
-        formData.append("refresh_token", refreshToken);
     }
     try {
         let response = await endpoint.httpModule.post(INSTANCE_URL + '/services/oauth2/token', formData,
             {
                 headers: formData.getHeaders()
             });
-        console.log('RESPONSE: ', response.data);
+        accessToken = response?.data?.access_token
+        if (!accessToken) endpoint.appLogger.warn('An access token was not received');
+        if (response?.data?.refresh_token) {
+            // here the authorization code is saved with the corresponding refresh token
+            await endpoint.dataStores.authorizationCode.save({ code: endpoint.endpointConfig.code, refreshToken: response.data.refresh_token });
+        }
         endpoint.appLogger.info('Access token received successfully');
-        accessToken = response.data.access_token;
-        refreshToken = response.data.refresh_token;
     } catch (error) {
-        console.log(error.response);
         endpoint.appLogger.error('There were problems receiving the access token: ', error.response);
     }
 }
