@@ -47,16 +47,22 @@ async function generateAccessToken() {
                 headers: formData.getHeaders()
             });
         accessToken = response?.data?.access_token
-        if (!accessToken) endpoint.appLogger.warn('An access token was not received');
+        if (!accessToken) {
+            endpoint.appLogger.warn('An access token was not received');
+            return false;
+        }
         if (response?.data?.refresh_token) {
             // here the authorization code is saved with the corresponding refresh token
             await endpoint.dataStores.authorizationCode.save({ code: endpoint.endpointConfig.code, refreshToken: response.data.refresh_token });
         }
         endpoint.appLogger.info('Access token received successfully');
+        return true;
     } catch (error) {
         endpoint.appLogger.error('There were problems receiving the access token: ', error.response);
+        return false;
     }
 }
+
 
 // HTTP methods
 endpoint.functions._get = async (options) => {
@@ -70,7 +76,14 @@ endpoint.functions._get = async (options) => {
     } catch (error) {
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            await generateAccessToken();
+            let haveAccessToken = false, strikeCount = 0;
+            while (!haveAccessToken && strikeCount <= 3) {
+                haveAccessTokenToken = await generateAccessToken();
+                strikeCount += 1;
+            }
+            if (!haveAccessToken) {
+                throw 'Unable to get access token';
+            }
             return await endpoint.functions._get(options);
         }
         endpoint.appLogger.error('There were problems executing the GET request', error.response);
@@ -88,7 +101,14 @@ endpoint.functions._post = async (options) => {
     } catch (error) {
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            await generateAccessToken();
+            let haveAccessToken = false, strikeCount = 0;
+            while (!haveAccessToken && strikeCount <= 3) {
+                haveAccessTokenToken = await generateAccessToken();
+                strikeCount += 1;
+            }
+            if (!haveAccessToken) {
+                throw 'Unable to get access token';
+            }
             return await endpoint.functions._post(options);
         }
         endpoint.appLogger.error('There were problems executing the POST request: ', error.response);
@@ -106,7 +126,14 @@ endpoint.functions._put = async (options) => {
     } catch (error) {
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            await generateAccessToken();
+            let haveAccessToken = false, strikeCount = 0;
+            while (!haveAccessToken && strikeCount <= 3) {
+                haveAccessTokenToken = await generateAccessToken();
+                strikeCount += 1;
+            }
+            if (!haveAccessToken) {
+                throw 'Unable to get access token';
+            }
             return await endpoint.functions._put(options);
         }
         endpoint.appLogger.error('There were problems executing the PUT request', error.response);
@@ -124,7 +151,14 @@ endpoint.functions._delete = async (options) => {
     } catch (error) {
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            await generateAccessToken();
+            let haveAccessToken = false, strikeCount = 0;
+            while (!haveAccessToken && strikeCount <= 3) {
+                haveAccessTokenToken = await generateAccessToken();
+                strikeCount += 1;
+            }
+            if (!haveAccessToken) {
+                throw 'Unable to get access token';
+            }
             return await endpoint.functions._delete(options);
         }
         endpoint.appLogger.error('There were problems executing the DELETE request', error.response);
@@ -142,7 +176,14 @@ endpoint.functions._patch = async (options) => {
     } catch (error) {
         if (error.response.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            await generateAccessToken();
+            let haveAccessToken = false, strikeCount = 0;
+            while (!haveAccessToken && strikeCount <= 3) {
+                haveAccessTokenToken = await generateAccessToken();
+                strikeCount += 1;
+            }
+            if (!haveAccessToken) {
+                throw 'Unable to get access token';
+            }
             return await endpoint.functions._patch(options);
         }
         endpoint.appLogger.error('There were problems executing the PATCH request', error.response);
