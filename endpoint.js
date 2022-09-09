@@ -58,7 +58,7 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Access token received successfully');
         return true;
     } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token: ', error.response);
+        endpoint.appLogger.error('There were problems receiving the access token: ', error);
         return false;
     }
 }
@@ -74,7 +74,7 @@ endpoint.functions._get = async (options) => {
         endpoint.appLogger.info('GET request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
+        if (error.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             let haveAccessToken = false, strikeCount = 0;
             while (!haveAccessToken && strikeCount <= 3) {
@@ -86,8 +86,8 @@ endpoint.functions._get = async (options) => {
             }
             return await endpoint.functions._get(options);
         }
-        endpoint.appLogger.error('There were problems executing the GET request', error.response);
-        throw 'There were problems executing the GET request', error.response;
+        endpoint.appLogger.error('There were problems executing the GET request', error);
+        throw 'There were problems executing the GET request', error;
     }
 }
 
@@ -99,7 +99,7 @@ endpoint.functions._post = async (options) => {
         endpoint.appLogger.info('POST request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
+        if (error.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             let haveAccessToken = false, strikeCount = 0;
             while (!haveAccessToken && strikeCount <= 3) {
@@ -111,8 +111,8 @@ endpoint.functions._post = async (options) => {
             }
             return await endpoint.functions._post(options);
         }
-        endpoint.appLogger.error('There were problems executing the POST request: ', error.response);
-        throw 'There were problems executing the POST request: ', error.response;
+        endpoint.appLogger.error('There were problems executing the POST request: ', error);
+        throw 'There were problems executing the POST request: ', error;
     }
 }
 
@@ -124,7 +124,7 @@ endpoint.functions._put = async (options) => {
         endpoint.appLogger.info('PUT request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
+        if (error.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             let haveAccessToken = false, strikeCount = 0;
             while (!haveAccessToken && strikeCount <= 3) {
@@ -136,8 +136,8 @@ endpoint.functions._put = async (options) => {
             }
             return await endpoint.functions._put(options);
         }
-        endpoint.appLogger.error('There were problems executing the PUT request', error.response);
-        throw 'There were problems executing the PUT request', error.response;
+        endpoint.appLogger.error('There were problems executing the PUT request', error);
+        throw 'There were problems executing the PUT request', error;
     }
 }
 
@@ -149,7 +149,7 @@ endpoint.functions._delete = async (options) => {
         endpoint.appLogger.info('DELETE request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
+        if (error.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             let haveAccessToken = false, strikeCount = 0;
             while (!haveAccessToken && strikeCount <= 3) {
@@ -161,8 +161,8 @@ endpoint.functions._delete = async (options) => {
             }
             return await endpoint.functions._delete(options);
         }
-        endpoint.appLogger.error('There were problems executing the DELETE request', error.response);
-        throw 'There were problems executing the DELETE request', error.response;
+        endpoint.appLogger.error('There were problems executing the DELETE request', error);
+        throw 'There were problems executing the DELETE request', error;
     }
 }
 
@@ -174,7 +174,7 @@ endpoint.functions._patch = async (options) => {
         endpoint.appLogger.info('PATCH request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
+        if (error.status === 401) {
             endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
             let haveAccessToken = false, strikeCount = 0;
             while (!haveAccessToken && strikeCount <= 3) {
@@ -186,8 +186,8 @@ endpoint.functions._patch = async (options) => {
             }
             return await endpoint.functions._patch(options);
         }
-        endpoint.appLogger.error('There were problems executing the PATCH request', error.response);
-        throw 'There were problems executing the PATCH request', error.response;
+        endpoint.appLogger.error('There were problems executing the PATCH request', error);
+        throw 'There were problems executing the PATCH request', error;
     }
 }
 
