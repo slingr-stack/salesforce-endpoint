@@ -211,5 +211,10 @@ endpoint.webServices.webhooks = {
     }
 }
 
+process.on('uncaughtException', (e) => {
+    endpoint.appLogger.error('Uncaught Exception', e);
+    endpoint.logger.error('Uncaught Exception', e);
+});
+
 // Always call this method at the end of the file to run the endpoint
 endpoint.start();
