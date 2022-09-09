@@ -126,7 +126,7 @@
         {
             "name": "code",
             "label": "Authorization Code",
-            "type": "label",
+            "type": "text",
             "visibility": "config.authorizationMethod == 'webServer'"
         },
         {
