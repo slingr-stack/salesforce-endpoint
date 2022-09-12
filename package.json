@@ -18,7 +18,8 @@
     "endpoints"
   ],
   "dependencies": {
-    "slingr-endpoints": "^1.4.4"
+    "slingr-endpoints": "^1.4.4",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19",
