@@ -3,13 +3,12 @@ const endpoint = require('slingr-endpoints'),
     FormData = require('form-data');
 
 // Endpoint hooks
-let INSTANCE_URL, REDIRECT_URI;
+let INSTANCE_URL;
 endpoint.hooks.onEndpointStart = async () => {
     // The loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used.
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
-    REDIRECT_URI = endpoint.endpointConfig.SERVER_URL+ '/callback';
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
@@ -35,7 +34,7 @@ async function generateAccessToken() {
         } else {
             formData.append("grant_type", 'authorization_code');
             formData.append("code", endpoint.endpointConfig.code);
-            formData.append("redirect_uri", REDIRECT_URI);
+            formData.append("redirect_uri", endpoint.settings.endpointsServicesApi);
         }
     } else if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         formData.append("grant_type", 'password');
@@ -59,7 +58,7 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Access token received successfully');
         return true;
     } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token: ', error);
+        endpoint.appLogger.error('There were problems receiving the access token: ', error.response.response);
         return false;
     }
 }
@@ -88,8 +87,8 @@ endpoint.functions._get = async (options) => {
             }
             return await endpoint.functions._get(options);
         }
-        endpoint.appLogger.error('There were problems executing the GET request', error);
-        throw 'There were problems executing the GET request', error;
+        endpoint.appLogger.error('There were problems executing the GET request', error.response);
+        throw 'There were problems executing the GET request', error.response;
     }
 }
 
@@ -113,8 +112,8 @@ endpoint.functions._post = async (options) => {
             }
             return await endpoint.functions._post(options);
         }
-        endpoint.appLogger.error('There were problems executing the POST request: ', error);
-        throw 'There were problems executing the POST request: ', error;
+        endpoint.appLogger.error('There were problems executing the POST request: ', error.response);
+        throw 'There were problems executing the POST request: ', error.response;
     }
 }
 
@@ -138,8 +137,8 @@ endpoint.functions._put = async (options) => {
             }
             return await endpoint.functions._put(options);
         }
-        endpoint.appLogger.error('There were problems executing the PUT request', error);
-        throw 'There were problems executing the PUT request', error;
+        endpoint.appLogger.error('There were problems executing the PUT request', error.response);
+        throw 'There were problems executing the PUT request', error.response;
     }
 }
 
@@ -163,8 +162,8 @@ endpoint.functions._delete = async (options) => {
             }
             return await endpoint.functions._delete(options);
         }
-        endpoint.appLogger.error('There were problems executing the DELETE request', error);
-        throw 'There were problems executing the DELETE request', error;
+        endpoint.appLogger.error('There were problems executing the DELETE request', error.response);
+        throw 'There were problems executing the DELETE request', error.response;
     }
 }
 
@@ -188,8 +187,8 @@ endpoint.functions._patch = async (options) => {
             }
             return await endpoint.functions._patch(options);
         }
-        endpoint.appLogger.error('There were problems executing the PATCH request', error);
-        throw 'There were problems executing the PATCH request', error;
+        endpoint.appLogger.error('There were problems executing the PATCH request', error.response);
+        throw 'There were problems executing the PATCH request', error.response;
     }
 }
 
@@ -209,8 +208,8 @@ endpoint.webServices.webhooks = {
 }
 
 process.on('uncaughtException', (error) => {
-    endpoint.appLogger.error('Uncaught Exception', error);
-    endpoint.logger.error('Uncaught Exception', error);
+    endpoint.appLogger.error('Uncaught Exception', error.response);
+    endpoint.logger.error('Uncaught Exception', error.response);
 });
 
 // Always call this method at the end of the file to run the endpoint
