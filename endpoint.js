@@ -58,7 +58,7 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Access token received successfully');
         return true;
     } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token: ', error);
+        endpoint.appLogger.error('There were problems receiving the access token: ', error.response);
         return false;
     }
 }
