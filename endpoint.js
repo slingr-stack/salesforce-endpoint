@@ -58,7 +58,7 @@ async function generateAccessToken() {
         endpoint.appLogger.info('Access token received successfully');
         return true;
     } catch (error) {
-        endpoint.appLogger.error('There were problems receiving the access token: ', error.response.response);
+        endpoint.appLogger.error('There were problems receiving the access token: ', error);
         return false;
     }
 }
@@ -87,8 +87,8 @@ endpoint.functions._get = async (options) => {
             }
             return await endpoint.functions._get(options);
         }
-        endpoint.appLogger.error('There were problems executing the GET request', error.response);
-        throw 'There were problems executing the GET request', error.response;
+        endpoint.appLogger.error('There were problems executing the GET request', error);
+        throw 'There were problems executing the GET request', error;
     }
 }
 
@@ -112,8 +112,8 @@ endpoint.functions._post = async (options) => {
             }
             return await endpoint.functions._post(options);
         }
-        endpoint.appLogger.error('There were problems executing the POST request: ', error.response);
-        throw 'There were problems executing the POST request: ', error.response;
+        endpoint.appLogger.error('There were problems executing the POST request: ', error);
+        throw 'There were problems executing the POST request: ', error;
     }
 }
 
@@ -137,8 +137,8 @@ endpoint.functions._put = async (options) => {
             }
             return await endpoint.functions._put(options);
         }
-        endpoint.appLogger.error('There were problems executing the PUT request', error.response);
-        throw 'There were problems executing the PUT request', error.response;
+        endpoint.appLogger.error('There were problems executing the PUT request', error);
+        throw 'There were problems executing the PUT request', error;
     }
 }
 
@@ -162,8 +162,8 @@ endpoint.functions._delete = async (options) => {
             }
             return await endpoint.functions._delete(options);
         }
-        endpoint.appLogger.error('There were problems executing the DELETE request', error.response);
-        throw 'There were problems executing the DELETE request', error.response;
+        endpoint.appLogger.error('There were problems executing the DELETE request', error);
+        throw 'There were problems executing the DELETE request', error;
     }
 }
 
@@ -187,8 +187,8 @@ endpoint.functions._patch = async (options) => {
             }
             return await endpoint.functions._patch(options);
         }
-        endpoint.appLogger.error('There were problems executing the PATCH request', error.response);
-        throw 'There were problems executing the PATCH request', error.response;
+        endpoint.appLogger.error('There were problems executing the PATCH request', error);
+        throw 'There were problems executing the PATCH request', error;
     }
 }
 
@@ -208,8 +208,8 @@ endpoint.webServices.webhooks = {
 }
 
 process.on('uncaughtException', (error) => {
-    endpoint.appLogger.error('Uncaught Exception', error.response);
-    endpoint.logger.error('Uncaught Exception', error.response);
+    endpoint.appLogger.error('Uncaught Exception', error);
+    endpoint.logger.error('Uncaught Exception', error);
 });
 
 // Always call this method at the end of the file to run the endpoint
