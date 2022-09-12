@@ -1,7 +1,7 @@
 ---
-title: Salesforce endpoint
+title: Salesforce Endpoint
 keywords: 
-last_updated: August 1, 2022
+last_updated: September 12, 2022
 tags: []
 summary: "Detailed description of the API of the Salesforce endpoint."
 ---
@@ -31,17 +31,10 @@ You can see more information about that in the [shortcuts section](#shortcuts).
 
 #### Prerequisites: 
 - https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_prereq.htm
-#### Step One: Sign up for Salesforce Developer Edition:
-- https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart_dev_org.htm
-#### Step Two: Set Up Authorization:
-- https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/CR_quickstart_oauth.htm
-#### Step Three: Connect to Connect REST API Using OAuth:
-- https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart_connecting.htm
+#### Step One: Set Up Authorization
+- https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm
 
 Append the user’s security token to their password. A security token is an automatically generated key from Salesforce. For example, if a user's password is mypassword, and their security token is XXXXXXXXXX, then the value provided for this parameter must be mypasswordXXXXXXXXXX.
-
-#### Connect to Experience Cloud Sites:
-- https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart_communities.htm
 
 # Javascript API
 

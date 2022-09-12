@@ -32,12 +32,9 @@ async function generateAccessToken() {
         let authorizationCode = await endpoint.dataStores.authorizationCode.findOne({ code: endpoint.endpointConfig.code });
         // if the authorization code is found the refresh token is used to get the access token
         if (authorizationCode) {
-            endpoint.appLogger.info('ENTRO 1');
             formData.append("grant_type", 'refresh_token');
             formData.append("refresh_token", authorizationCode.refreshToken);
         } else {
-            endpoint.appLogger.info('ENTRO 2');
-            endpoint.appLogger.info('REDIRECT URI: ' + REDIRECT_URI);
             formData.append("grant_type", 'authorization_code');
             formData.append("code", endpoint.endpointConfig.code);
             formData.append("redirect_uri", REDIRECT_URI); 
