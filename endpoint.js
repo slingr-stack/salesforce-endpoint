@@ -3,15 +3,12 @@ const endpoint = require('slingr-endpoints'),
     FormData = require('form-data');
 
 // Endpoint hooks
-let INSTANCE_URL, REDIRECT_URI;
+let INSTANCE_URL;
 endpoint.hooks.onEndpointStart = async () => {
     // The loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used.
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
-    REDIRECT_URI = endpoint.endpointConfig.redirectUri;
-    endpoint.appLogger.info('REDIRECT URI: ' + REDIRECT_URI);
-    endpoint.appLogger.info('REDIRECT URI CONFIG: ' + endpoint.endpointConfig.redirectUri);
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
@@ -37,7 +34,7 @@ async function generateAccessToken() {
         } else {
             formData.append("grant_type", 'authorization_code');
             formData.append("code", endpoint.endpointConfig.code);
-            formData.append("redirect_uri", REDIRECT_URI);
+            formData.append("redirect_uri", endpoint.settings.endpointsServicesApi);
         }
     } else if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         formData.append("grant_type", 'password');
