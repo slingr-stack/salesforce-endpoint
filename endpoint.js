@@ -67,6 +67,7 @@ async function generateAccessToken() {
 // HTTP methods
 endpoint.functions._get = async (options) => {
     try {
+        endpoint.appLogger.info('GET request to: '+INSTANCE_URL + options.params.path);
         let { data } = await endpoint.httpModule.get(INSTANCE_URL + options.params.path, {
             headers: { 'Authorization': `Bearer ${accessToken}` },
             params: options.params.body
@@ -196,15 +197,10 @@ endpoint.webServices.webhooks = {
     method: 'POST',
     path: '/',
     handler: function (req, res) {
-        let body;
-        try {
-            body = req.body;
-        } catch (err) {
-            throw new Error('Body must be valid JSON');
-        }
+        let body = req.body || {};
 
         // send event to app
-        endpoint.events.send('inboundEvent', body);
+        endpoint.events.send('webhook', body);
 
         // this is what the webhook caller receives as response
         res.send({ status: 'ok' });

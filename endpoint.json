@@ -22,19 +22,9 @@
     }],
     "events": [
         {
-            "label": "Inbound Event",
-            "name": "inboundEvent",
-            "description": "Event send for the endpoint each time that a POST request to the root path of the web service."
-        },
-        {
-            "label": "On Download Complete",
-            "name": "onDownloadComplete",
-            "description": "Callback event for when upload of a file has finished"
-        },
-        {
-            "label": "On Upload Finished",
-            "name": "onUploadComplete",
-            "description": "Callback event for when upload of a file has finished"
+            "label": "Webhook",
+            "name": "webhook",
+            "description": "Receive a POST request for webhook events."
         }
     ],
     "functions": [
