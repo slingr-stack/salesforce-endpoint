@@ -10,7 +10,7 @@ endpoint.hooks.onEndpointStart = async () => {
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
-    let redirectUri = url.parse(endpoint.settings.endpointsServicesApi);
+    let redirectUri = url.parse(endpoint.settings.webhookUrl);
     REDIRECT_URI = redirectUri.protocol + '//' + redirectUri.hostname + '/callback';
     await generateAccessToken();
 };
