@@ -32,8 +32,10 @@ async function generateAccessToken() {
             formData.append("grant_type", 'refresh_token');
             formData.append("refresh_token", authorizationCode.refreshToken);
         } else {
+            endpoint.appLogger.info('ENTRO 1');
             formData.append("grant_type", 'authorization_code');
             formData.append("code", endpoint.endpointConfig.code);
+            endpoint.appLogger.info('REDIRECT URI: ' + endpoint.settings.endpointsServicesApi);
             formData.append("redirect_uri", endpoint.settings.endpointsServicesApi);
         }
     } else if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
