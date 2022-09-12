@@ -10,6 +10,8 @@ endpoint.hooks.onEndpointStart = async () => {
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
     REDIRECT_URI = endpoint.endpointConfig.redirectUri;
+    endpoint.appLogger.info('REDIRECT URI: ' + REDIRECT_URI);
+    endpoint.appLogger.info('REDIRECT URI CONFIG: ' + endpoint.endpointConfig.redirectUri);
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
