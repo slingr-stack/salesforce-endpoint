@@ -3,12 +3,13 @@ const endpoint = require('slingr-endpoints'),
     FormData = require('form-data');
 
 // Endpoint hooks
-let INSTANCE_URL;
+let INSTANCE_URL, REDIRECT_URI;
 endpoint.hooks.onEndpointStart = async () => {
     // The loggers, endpoint properties, data stores, etc. are initialized at this point. the endpoint is ready to be used.
     endpoint.logger.info('From Hook - Endpoint has started');
     endpoint.appLogger.info('From Hook - Endpoint has started');
     INSTANCE_URL = endpoint.endpointConfig.instanceUrl;
+    REDIRECT_URI = endpoint.config.SERVER_URL+ '/callback';
     await generateAccessToken();
 };
 endpoint.hooks.onEndpointStop = (cause) => {
@@ -34,7 +35,7 @@ async function generateAccessToken() {
         } else {
             formData.append("grant_type", 'authorization_code');
             formData.append("code", endpoint.endpointConfig.code);
-            formData.append("redirect_uri", endpoint.endpointConfig.redirectUri);
+            formData.append("redirect_uri", REDIRECT_URI);
         }
     } else if (endpoint.endpointConfig.authorizationMethod === 'usernamePassword') {
         formData.append("grant_type", 'password');
@@ -207,9 +208,9 @@ endpoint.webServices.webhooks = {
     }
 }
 
-process.on('uncaughtException', (e) => {
-    endpoint.appLogger.error('Uncaught Exception', e);
-    endpoint.logger.error('Uncaught Exception', e);
+process.on('uncaughtException', (error) => {
+    endpoint.appLogger.error('Uncaught Exception', error);
+    endpoint.logger.error('Uncaught Exception', error);
 });
 
 // Always call this method at the end of the file to run the endpoint
