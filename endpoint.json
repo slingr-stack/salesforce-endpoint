@@ -17,9 +17,11 @@
         "allowMultipleInstances": false
     },
     "status": "ACTIVE",
-    "stores": [{
-        "name": "authorizationCode"
-    }],
+    "stores": [
+        {
+            "name": "authorizationCode"
+        }
+    ],
     "events": [
         {
             "label": "Webhook",
@@ -133,6 +135,13 @@
             "description": "Customer Password Value",
             "type": "password",
             "required": "config.authorizationMethod == 'usernamePassword'",
+            "visibility": "config.authorizationMethod == 'usernamePassword'"
+        },
+        {
+            "name": "appConfig",
+            "label": "Important",
+            "value": "Append the users security token to their password. A security token is an automatically generated key from Salesforce. For example, if a user's password is mypassword, and their security token is XXXXXXXXXX, then the value provided for this parameter must be mypasswordXXXXXXXXXX.",
+            "type": "info",
             "visibility": "config.authorizationMethod == 'usernamePassword'"
         }
     ]
