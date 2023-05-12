@@ -18,9 +18,7 @@
     },
     "status": "ACTIVE",
     "stores": [
-        {
-            "name": "authorizationCode"
-        }
+        { "name": "authorizationCode" }
     ],
     "events": [
         {
@@ -49,11 +47,17 @@
         {
             "label": "DELETE",
             "name": "_delete"
+        },
+        {
+            "label": "HEAD",
+            "name": "_head"
         }
     ],
     "scripts": [
-        "salesforce-helpers.js",
-        "http-generic-helpers.js"
+        "functions.js"
+    ],
+    "flowSteps": [
+        "apiCallSalesforce"
     ],
     "configuration": [
         {

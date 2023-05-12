@@ -1,42 +1,3 @@
----
-title: Salesforce Endpoint
-keywords: 
-last_updated: May 12, 2023
-tags: []
-summary: "Detailed description of the API of the Salesforce endpoint."
----
-
-## Overview
-
-Salesforce provides customer relationship management software and applications focused on sales, customer service, marketing automation, analytics, and application development.
-The Salesforce endpoint has the following features:
-
-- Interact with Salesforce API
-- Shortcuts to access the REST API
-- Support for webhooks
-
-In most cases you will be using the provided shortcuts to access the API. For example, you could use the REST API
-directly by doing an HTTP request like this:
-
-```js
-var res = app.endpoints.salesforce.services.data.get('v55.0');
-```
-
-These shortcuts are based on the [Salesforce REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm).
-You can see more information about that in the [shortcuts section](#shortcuts).
-
-## Configuration
-
-### Quick Start
-
-#### Prerequisites: 
-- https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_prereq.htm
-- 
-#### Step One: Set Up Authorization
-- https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm
-
-Append the user’s security token to their password. A security token is an automatically generated key from Salesforce. For example, if a user's password is mypassword, and their security token is XXXXXXXXXX, then the value provided for this parameter must be mypasswordXXXXXXXXXX.
-
 # Javascript API
 
 The Javascript API of the salesforce endpoint has three pieces:
@@ -898,10 +859,10 @@ app.endpoints.salesforce.sobjects.OpportunityLineItem.OpportunityLineItemSchedul
 ---
 
 </details>
-
+    
 ## Flow Step
 
-As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint:
+As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint: 
 <details>
     <summary>Click here to see the Flow Steps</summary>
 
@@ -1087,14 +1048,3 @@ Description of Custom Flow Steps
 
 ## Additional Helpers
 *MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
-
-
-## About SLINGR
-
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
-
-[More info about SLINGR](https://slingr.io)
-
-## License
-
-This endpoint is licensed under the Apache License 2.0. See the `LICENSE` file for more details.
