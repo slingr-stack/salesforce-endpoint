@@ -66,7 +66,6 @@ async function generateAccessToken() {
     }
 }
 
-
 // HTTP methods
 endpoint.functions._get = async (options) => {
     try {
@@ -77,18 +76,7 @@ endpoint.functions._get = async (options) => {
         endpoint.appLogger.info('GET request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
-            endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            let haveAccessToken = false, strikeCount = 0;
-            while (!haveAccessToken && strikeCount <= 3) {
-                haveAccessTokenToken = await generateAccessToken();
-                strikeCount += 1;
-            }
-            if (!haveAccessToken) {
-                return endpoint.throw(error, error.response.data);
-            }
-            return await endpoint.functions._get(options);
-        }
+        await handleRetry(error, options, endpoint.functions._get);
         return endpoint.throw(error, error.response.data);
     }
 }
@@ -101,18 +89,7 @@ endpoint.functions._post = async (options) => {
         endpoint.appLogger.info('POST request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
-            endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            let haveAccessToken = false, strikeCount = 0;
-            while (!haveAccessToken && strikeCount <= 3) {
-                haveAccessTokenToken = await generateAccessToken();
-                strikeCount += 1;
-            }
-            if (!haveAccessToken) {
-                return endpoint.throw(error, error.response.data);
-            }
-            return await endpoint.functions._get(options);
-        }
+        await handleRetry(error, options, endpoint.functions._post);
         return endpoint.throw(error, error.response.data);
     }
 }
@@ -125,18 +102,7 @@ endpoint.functions._put = async (options) => {
         endpoint.appLogger.info('PUT request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
-            endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            let haveAccessToken = false, strikeCount = 0;
-            while (!haveAccessToken && strikeCount <= 3) {
-                haveAccessTokenToken = await generateAccessToken();
-                strikeCount += 1;
-            }
-            if (!haveAccessToken) {
-                return endpoint.throw(error, error.response.data);
-            }
-            return await endpoint.functions._get(options);
-        }
+        await handleRetry(error, options, endpoint.functions._put);
         return endpoint.throw(error, error.response.data);
     }
 }
@@ -149,18 +115,7 @@ endpoint.functions._delete = async (options) => {
         endpoint.appLogger.info('DELETE request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
-            endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            let haveAccessToken = false, strikeCount = 0;
-            while (!haveAccessToken && strikeCount <= 3) {
-                haveAccessTokenToken = await generateAccessToken();
-                strikeCount += 1;
-            }
-            if (!haveAccessToken) {
-                return endpoint.throw(error, error.response.data);
-            }
-            return await endpoint.functions._get(options);
-        }
+        await handleRetry(error, options, endpoint.functions._delete);
         return endpoint.throw(error, error.response.data);
     }
 }
@@ -173,19 +128,36 @@ endpoint.functions._patch = async (options) => {
         endpoint.appLogger.info('PATCH request executed successfully');
         return data;
     } catch (error) {
-        if (error.response.status === 401) {
-            endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
-            let haveAccessToken = false, strikeCount = 0;
-            while (!haveAccessToken && strikeCount <= 3) {
-                haveAccessTokenToken = await generateAccessToken();
-                strikeCount += 1;
-            }
-            if (!haveAccessToken) {
-                return endpoint.throw(error, error.response.data);
-            }
-            return await endpoint.functions._get(options);
-        }
+        await handleRetry(error, options, endpoint.functions._patch);
         return endpoint.throw(error, error.response.data);
+    }
+}
+
+endpoint.functions._head = async (options) => {
+    try {
+        let { data } = await endpoint.httpModule.head(INSTANCE_URL + options.params.path, options.params.body, {
+            headers: { 'Authorization': `Bearer ${accessToken}` }
+        });
+        endpoint.appLogger.info('HEAD request executed successfully');
+        return data;
+    } catch (error) {
+        await handleRetry(error, options, endpoint.functions._head);
+        return endpoint.throw(error, error.response.data);
+    }
+}
+
+const handleRetry = async (error, options, _callbackFunction) => {
+    if (error.response.status === 401) {
+        endpoint.appLogger.warn('Unauthorized user or expired token to make the request');
+        let haveAccessToken = false, strikeCount = 0;
+        while (!haveAccessToken && strikeCount <= 3) {
+            haveAccessToken = await generateAccessToken();
+            strikeCount += 1;
+        }
+        if (!haveAccessToken) {
+            return endpoint.throw(error, error.response.data);
+        }
+        return await _callbackFunction(options);
     }
 }
 
@@ -195,7 +167,7 @@ endpoint.throw = (err, data) => {
         __endpoint_exception__: true,
         message: typeof err === 'string' ? err : 'Endpoint Exception',
         additionalInfo: {},
-        error: { code: err.code ?? 't9Error', name: 'T9 Bot Error' }
+        error: { code: err.code ?? 'Error', name: 'Error' }
     }
     if (err.message) error.message = err.message;
     if (err.cause) error.additionalInfo.cause = err.cause;
@@ -220,6 +192,7 @@ endpoint.webServices.webhooks = {
 }
 
 process.on('uncaughtException', (error) => {
+    endpoint.appLogger= endpoint.logger =console;
     endpoint.appLogger.error('Uncaught Exception', error);
     endpoint.logger.error('Uncaught Exception', error);
 });
