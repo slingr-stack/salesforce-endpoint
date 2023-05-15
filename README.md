@@ -1076,11 +1076,81 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 
 
-### Custom Flow Steps Name
+### List Available REST API Versions
 
-Description of Custom Flow Steps
+Use the Versions resource to list summary information about each REST API version currently available, including the version, label, and a link to each version's root. You don’t need authentication to retrieve the list of versions.
 
-*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
+<h3>Outputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+### Get a List of Objects
+
+Used to list the objects available in your org and available to the logged-in user. This resource also returns the org encoding, as well as maximum batch size permitted in queries.
+
+<h3>Inputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Required</th>
+        <th>Default</th>
+        <th>Visibility</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>API Version</td>
+        <td> text </td>
+        <td> yes </td>
+        <td> v1 </td>
+        <td> Always </td>
+        <td> The version of the API of Salesforce that contains objects with metadata.</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>Outputs</h3>
+
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>response</td>
+        <td>object</td>
+        <td>
+            Object resulting from the response to the endpoint call.
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 
 </details>

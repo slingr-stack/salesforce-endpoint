@@ -57,7 +57,9 @@
         "functions.js"
     ],
     "flowSteps": [
-        "apiCallSalesforce"
+        "apiCallSalesforce",
+        "getAPIsSalesforce",
+        "getObjectsSalesforce"
     ],
     "configuration": [
         {

@@ -1,0 +1,15 @@
+{
+  "label": "Get all APIs salesforce",
+  "name": "getAPIsSalesforce",
+  "category": "integrations",
+  "description": "This flow step will send generic request to get all apis from salesforce endpoint",
+  "inputs": [ ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}

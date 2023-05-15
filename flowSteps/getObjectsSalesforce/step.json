@@ -1,0 +1,25 @@
+{
+  "label": "Get objects from salesforce",
+  "name": "getObjectsSalesforce",
+  "category": "integrations",
+  "description": "Get a List of Objects from Salesforce",
+  "inputs": [
+    {
+      "label": "API Version",
+      "name": "apiVersion",
+      "type": "text",
+      "required": "true",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}
