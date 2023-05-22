@@ -1,42 +1,3 @@
----
-title: Salesforce Endpoint
-keywords: 
-last_updated: May 12, 2023
-tags: []
-summary: "Detailed description of the API of the Salesforce endpoint."
----
-
-## Overview
-
-Salesforce provides customer relationship management software and applications focused on sales, customer service, marketing automation, analytics, and application development.
-The Salesforce endpoint has the following features:
-
-- Interact with Salesforce API
-- Shortcuts to access the REST API
-- Support for webhooks
-
-In most cases you will be using the provided shortcuts to access the API. For example, you could use the REST API
-directly by doing an HTTP request like this:
-
-```js
-var res = app.endpoints.salesforce.services.data.get('v55.0');
-```
-
-These shortcuts are based on the [Salesforce REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm).
-You can see more information about that in the [shortcuts section](#shortcuts).
-
-## Configuration
-
-### Quick Start
-
-#### Prerequisites: 
-- https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_prereq.htm
-- 
-#### Step One: Set Up Authorization
-- https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart_oauth.htm
-
-Append the user’s security token to their password. A security token is an automatically generated key from Salesforce. For example, if a user's password is mypassword, and their security token is XXXXXXXXXX, then the value provided for this parameter must be mypasswordXXXXXXXXXX.
-
 # Javascript API
 
 The Javascript API of the salesforce endpoint has three pieces:
@@ -898,10 +859,10 @@ app.endpoints.salesforce.sobjects.OpportunityLineItem.OpportunityLineItemSchedul
 ---
 
 </details>
-
+    
 ## Flow Step
 
-As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint:
+As an alternative option to using scripts, you can make use of Flows and Flow Steps specifically created for the endpoint: 
 <details>
     <summary>Click here to see the Flow Steps</summary>
 
@@ -1076,95 +1037,14 @@ For more information about how shortcuts or flow steps works, and how they are g
 
 
 
-### List Available REST API Versions
+### Custom Flow Steps Name
 
-Use the Versions resource to list summary information about each REST API version currently available, including the version, label, and a link to each version's root. You don’t need authentication to retrieve the list of versions.
+Description of Custom Flow Steps
 
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
-
-
-### Get a List of Objects
-
-Used to list the objects available in your org and available to the logged-in user. This resource also returns the org encoding, as well as maximum batch size permitted in queries.
-
-<h3>Inputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Label</th>
-        <th>Type</th>
-        <th>Required</th>
-        <th>Default</th>
-        <th>Visibility</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>API Version</td>
-        <td> text </td>
-        <td> yes </td>
-        <td> v1 </td>
-        <td> Always </td>
-        <td> The version of the API of Salesforce that contains objects with metadata.</td>
-    </tr>
-    </tbody>
-</table>
-
-<h3>Outputs</h3>
-
-<table>
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>response</td>
-        <td>object</td>
-        <td>
-            Object resulting from the response to the endpoint call.
-        </td>
-    </tr>
-    </tbody>
-</table>
+*MANUALLY ADD THE DOCUMENTATION OF THESE FLOW STEPS HERE...*
 
 
 </details>
 
 ## Additional Helpers
 *MANUALLY ADD THE DOCUMENTATION OF THESE HELPERS HERE...*
-
-
-## About SLINGR
-
-SLINGR is a low-code rapid application development platform that accelerates development, with robust architecture for integrations and executing custom workflows and automation.
-
-[More info about SLINGR](https://slingr.io)
-
-## License
-
-This endpoint is licensed under the Apache License 2.0. See the `LICENSE` file for more details.

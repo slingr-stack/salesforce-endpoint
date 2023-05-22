@@ -106,3 +106,7 @@ dist
 .tern-port
 
 .DS_Store
+
+.idea
+
+endpoint_local.properties

@@ -5,8 +5,7 @@
   "main": "endpoint.js",
   "scripts": {
     "start": "node endpoint.js",
-    "startDev": "nodemon endpoint.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "startDev": "nodemon endpoint.js"
   },
   "repository": {
     "type": "git",

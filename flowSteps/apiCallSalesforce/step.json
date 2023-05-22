@@ -1,0 +1,490 @@
+{
+  "label": "API call to salesforce",
+  "name": "apiCallSalesforce",
+  "category": "integrations",
+  "description": "This flow step will send generic request to salesforce",
+  "inputs": [
+    {
+      "label": "Url",
+      "name": "url",
+      "description": "The method and path to which this endpoint is to send requests in a generic way.",
+      "type": "urlParams",
+      "required": "true",
+      "options": {
+        "type": "dropDown",
+        "possibleValues": [
+            {
+              "label": "GET /services/data"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/limits"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/{id}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObjectName}/{fieldName}/{fieldValue}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/describe"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/deleted"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/updated"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/describe/namedLayouts/{layoutName}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/describe/approvalLayouts"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/describe/approvalLayouts/{approvalProcessName}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/describe/compactLayouts"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/Global/describe/layouts"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/Object/describe/layouts/{id}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/PlatformAction"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/quickActions"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/quickActions/{actionName}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/quickActions/{actionName}/describe"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/quickActions/{actionName}/defaultValues"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/quickActions/{actionName}/defaultValues/{id}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sObject}/{id}/richTextImageFields/{fieldName}/{contentReferenceId}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/User/{userId}/password"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/SelfServiceUser/{selfServiceUserId}/password"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{eventName}/eventSchema"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/event/eventSchema/{schemaId}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/appMenu/AppSwitcher"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/appMenu/Salesforce1"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/compactLayouts"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/consent/action"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/consent/action/{action}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/consent/multiaction"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support/embeddedservice/configuration/{embeddedServiceConfigDeveloperName}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/actions"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/actions/standard"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/actions/standard/{action}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/actions/custom"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/actions/custom/{action}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sobjectType}/listviews/{queryLocator}/describe"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sobjectType}/listviews/{listViewID}/results"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sobjectType}/listviews"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sobjectType}/listviews/{listViewID}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support/dataCategoryGroups"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support/dataCategoryGroups/{group}/dataCategories/{category}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support/knowledgeArticles"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/support/knowledgeArticles/{article}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/parameterizedSearch"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/consent/dsr/rtp/execute"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/process/approvals"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/process/rules"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/process/rules/sObjectName"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/process/rules/sObjectName/workflowRuleId"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/OpportunityLineItem/{opportunityLineItemId}/OpportunityLineItemSchedules"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/query/{query}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/queryAll/{query}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/quickActions"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/{sobjectType}/listviews/recent"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/recent"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/limits/recordCount"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/relevantItems"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/knowledgeManagement/settings"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search/scopeOrder"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search/layout"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningToggleMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningUsageByAppTypeMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningUsageByBrowserMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningUsageByPageMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningUsageByFlexiPageMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/sobjects/LightningExitByPageMetrics"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/scheduling"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search/suggestions"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search/suggestTitleMatches"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/search/suggestSearchQueries"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/localizedvalue/record/{developerName}/{language}"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/theme"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/composite"
+            },
+            {
+              "label": "GET /services/data/{apiVersion}/composite/sobjects/{sObjectName}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/sobjects/{sObject}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/sobjects/{sObject}/quickActions/{actionName}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/sobjects/User/{userId}/password"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/sobjects/SelfServiceUser/{selfServiceUserId}/password"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/actions/{actions}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/actions/standard"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/actions/standard/{action}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/actions/custom"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/actions/custom/{action}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/parameterizedSearch"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/consent/dsr/rtp/execute"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/process/approvals"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/process/rules"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/quickActions/{quickAction}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/scheduling/getAppointmentSlots"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/scheduling/getAppointmentCandidates"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/localizedvalue/record/{developerName}/{language}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/localizedvalue/records/upsert"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/localizedvalue/records/delete"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/localizedvalue/records/get"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/composite"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/composite/batch"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/composite/tree/{sObjectName}"
+            },
+            {
+              "label": "POST /services/data/{apiVersion}/composite/sobjects"
+            },
+            {
+              "label": "PATCH /services/data/{apiVersion}/sobjects/{sObject}/{id}"
+            },
+            {
+              "label": "PATCH /services/data/{apiVersion}/sobjects/{sObjectName}/{fieldName}/{fieldValue}"
+            },
+            {
+              "label": "PATCH /services/data/{apiVersion}/consent/action/{action}"
+            },
+            {
+              "label": "PATCH /services/data/{apiVersion}/composite/sobjects"
+            },
+            {
+              "label": "PATCH /services/data/{apiVersion}/composite/sobjects/{sObjectName}/{externalIdFieldName}"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/sobjects/{sObject}/{id}"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/sobjects/{sObjectName}/{fieldName}/{fieldValue}"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/sobjects/User/{userId}/password"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/sobjects/SelfServiceUser/{selfServiceUserId}/password"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/sobjects/OpportunityLineItem/{opportunityLineItemId}/OpportunityLineItemSchedules"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/localizedvalue/record/{developerName}/{language}"
+            },
+            {
+              "label": "DELETE /services/data/{apiVersion}/composite/sobjects"
+            },
+            {
+              "label": "HEAD /services/data/{apiVersion}/sobjects/{sObjectName}/{fieldName}/{fieldValue}"
+            },
+            {
+              "label": "PUT /services/data/{apiVersion}/sobjects/OpportunityLineItem/{opportunityLineItemId}/OpportunityLineItemSchedules"
+            }
+        ]
+      }
+    },
+    {
+      "label": "Headers",
+      "name": "headers",
+      "description": "Let the client and the server pass additional information with the HTTP request in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Query Params",
+      "name": "params",
+      "description": "Parameters attached to the end of a url in a key value format. (e.g. key=ABC123)",
+      "type": "keyValue"
+    },
+    {
+      "label": "Body",
+      "name": "body",
+      "type": "json",
+      "description": "Content to be sent to the server.",
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Override Settings",
+      "name": "overrideSettings",
+      "type": "boolean",
+      "description": "If true, allows adding configurations",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Follow Redirects",
+      "name": "followRedirects",
+      "type": "boolean",
+      "description": "Follow the redirects when a HTTP request is executed",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Download",
+      "name": "download",
+      "type": "boolean",
+      "description": "Indicates that the resource has to be downloaded into a file instead of returning it in the response.",
+      "visibility": "config.overrideSettings && config.events != \"fileDownloaded\"",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "File Name",
+      "name": "fileName",
+      "description": "If provided, the file will be stored with this name. If empty the file name will be calculated from the URL.",
+      "visibility": "(config.overrideSettings && config.download) || config.events === \"fileDownloaded\"",
+      "type": "text",
+      "options": {
+        "allowContextSelector": "true"
+      }
+    },
+    {
+      "label": "Full Response",
+      "name": "fullResponse",
+      "type": "boolean",
+      "description": "Include extended information about response",
+      "visibility": "config.overrideSettings",
+      "defaultValue": false,
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Connection timeout",
+      "name": "connectionTimeout",
+      "description": "Connect timeout interval, in milliseconds (0 = infinity). Default value: 5000 ms (5 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "5000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.connectionTimeout || utils.isPlaceholder(config.connectionTimeout) || utils.getInteger(config.connectionTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    },
+    {
+      "label": "Read timeout",
+      "name": "readTimeout",
+      "description": "Read timeout interval, in milliseconds (0 = infinity). Default value: 60000 ms (60 sec)",
+      "visibility": "config.overrideSettings",
+      "type": "text",
+      "defaultValue": "60000",
+      "typeOptions": {
+        "validation": {
+          "function": "!config.readTimeout || utils.isPlaceholder(config.readTimeout) || utils.getInteger(config.readTimeout) >= 0",
+          "message": "The time must be a valid placeholder or a positive integer greater than or equal to 0. "
+        }
+      },
+      "options": {
+        "allowContextSelector": "false"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "label": "Response",
+      "name": "response",
+      "type": "object",
+      "description": "The response to external URL"
+    }
+  ]
+}
